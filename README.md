@@ -32,12 +32,12 @@
 
 <table align="center">
   <tr>
-    <td align="center"><h3>📘 10</h3>core lessons</td>
-    <td align="center"><h3>🔬 7</h3>deep dives</td>
-    <td align="center"><h3>🧪 112</h3>offline tests</td>
-    <td align="center"><h3>🛠️ 12</h3>projects</td>
-    <td align="center"><h3>📝 34+</h3>quiz questions</td>
-    <td align="center"><h3>🌱 1</h3>new topic every week</td>
+    <td align="center" width="16%">📘<br/><b><big>10</big></b><br/><sub>lessons</sub></td>
+    <td align="center" width="16%">🔬<br/><b><big>7</big></b><br/><sub>deep dives</sub></td>
+    <td align="center" width="16%">🧪<br/><b><big>112</big></b><br/><sub>tests</sub></td>
+    <td align="center" width="16%">🛠️<br/><b><big>12</big></b><br/><sub>projects</sub></td>
+    <td align="center" width="16%">📝<br/><b><big>34+</big></b><br/><sub>quiz Qs</sub></td>
+    <td align="center" width="16%">🌱<br/><b><big>+1</big></b><br/><sub>topic / week</sub></td>
   </tr>
 </table>
 
