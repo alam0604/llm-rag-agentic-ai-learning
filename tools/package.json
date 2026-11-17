@@ -1,0 +1,7 @@
+{
+  "name": "repo-tools",
+  "private": true,
+  "type": "module",
+  "description": "Validation helpers: node check_mermaid.mjs <files.md...>",
+  "dependencies": { "mermaid": "^11.0.0", "jsdom": "^24.0.0" }
+}

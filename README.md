@@ -20,6 +20,14 @@ flowchart LR
     H --> I["10 Hands-on<br/>LangGraph · FastAPI<br/>Databricks Mosaic AI"]
 ```
 
+## 🌱 This repo keeps evolving
+
+Every week a scheduled update adds a **new topic** (lesson or deep dive with diagrams, code, tests, quiz and links), **re-checks an older lesson** for outdated APIs and dead links, and on the first update of each month writes a **[What's new digest](docs/whats-new/README.md)**.
+
+- **Steer it:** add topics under *🔥 Requested* in **[BACKLOG.md](BACKLOG.md)** (edit on GitHub), or reorder the plan.
+- **See what changed:** **[CHANGELOG.md](CHANGELOG.md)** · the quality rules every update follows: **[EVOLUTION.md](EVOLUTION.md)**
+- Nothing is pushed unless all tests and diagram checks pass; any week can be undone with `git revert`.
+
 ## 📖 Curriculum
 
 | # | Module | Level | What you'll learn |
