@@ -56,15 +56,16 @@ Want a schedule? Follow the **[12-week roadmap](ROADMAP.md)** (~6–8 h/week).
 ## 🗺️ The journey
 
 ```mermaid
-flowchart LR
-    A["🧠 01 Foundations<br/>tokens · embeddings<br/>attention"] --> B["💬 02 LLMs<br/>APIs · prompting<br/>structured output"]
-    B --> C["🧭 03 Vector DBs<br/>HNSW · IVF · PQ<br/>hybrid search"]
-    C --> D["📚 04 RAG<br/>chunking · rerank<br/>evaluation"]
-    D --> E["🤖 05 Agents<br/>ReAct · tools<br/>memory · MCP"]
-    E --> F["⚡ 06 Advanced<br/>GraphRAG · LoRA<br/>LLMOps · security"]
-    F --> G["🧱 07/08 Apply it<br/>devs & data<br/>engineers"]
-    G --> H["🚀 10 Ship it<br/>LangGraph · FastAPI<br/>Databricks"]
-    H --> I["🔬 Deep dives<br/>+ weekly new<br/>topics"]
+flowchart TB
+    subgraph L["📚 Learn the core"]
+        direction LR
+        A["🧠 01 Foundations<br/>tokens · attention"] --> B["💬 02 LLMs<br/>APIs · prompting"] --> C["🧭 03 Vector DBs<br/>HNSW · hybrid"] --> D["📚 04 RAG<br/>chunk · rerank · eval"] --> E["🤖 05 Agents<br/>ReAct · tools · MCP"]
+    end
+    subgraph S["🚀 Build & ship"]
+        direction LR
+        F["⚡ 06 Advanced<br/>GraphRAG · LoRA · LLMOps"] --> G["🧱 07/08 Apply it<br/>devs & data engineers"] --> H["🚀 10 Ship it<br/>LangGraph · FastAPI"] --> I["🔬 Deep dives<br/>+ a new topic weekly"]
+    end
+    L --> S
     style A fill:#0c4a6e,color:#fff,stroke:#7dd3fc
     style D fill:#3b0764,color:#fff,stroke:#a78bfa
     style E fill:#4a044e,color:#fff,stroke:#f0abfc
@@ -103,7 +104,7 @@ flowchart LR
 Everything in [`src/ailearn/`](src/ailearn) is written from scratch to be **read**, and it all runs **offline with no API key**. Fake LLMs (`ScriptedLLM`, `MockLLM`) stand in for the real ones in tests, and you can swap in OpenAI, Azure OpenAI, Claude or Ollama with one line.
 
 <table>
-<tr><th>🔤 Foundations</th><th>🔎 Retrieval & RAG</th><th>🤖 Agents & serving</th><th>🛡️ Production</th></tr>
+<tr><th width="50%">🔤 Foundations</th><th width="50%">🔎 Retrieval & RAG</th></tr>
 <tr valign="top">
 <td>
 
@@ -120,6 +121,9 @@ Everything in [`src/ailearn/`](src/ailearn) is written from scratch to be **read
 `rag.py` — full RAG pipeline
 
 </td>
+</tr>
+<tr><th>🤖 Agents & serving</th><th>🛡️ Production</th></tr>
+<tr valign="top">
 <td>
 
 `agent.py` — ReAct + safe tools<br/>
