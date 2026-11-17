@@ -96,7 +96,11 @@ With a real model (optional): `pip install -e ".[real]"`, set `OPENAI_API_KEY` (
 ├── assets/images/        # generated figures (attention, embeddings, HNSW, IVF…)
 ├── projects/             # 12 project specs with acceptance criteria
 ├── quizzes/              # graded questions + system-design prompts
-└── resources/            # curated articles, courses, videos, repos, papers
+├── resources/            # curated articles, courses, videos, repos, papers
+├── tools/                # Mermaid + link checkers used before every push
+├── BACKLOG.md            # 👉 topic queue for weekly updates (you edit this)
+├── EVOLUTION.md          # rules for how the repo grows
+└── CHANGELOG.md          # what changed, week by week
 ```
 
 ## 🖼️ A peek at the pictures
