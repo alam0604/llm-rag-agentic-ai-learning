@@ -1,121 +1,228 @@
-# 🧠 LLM · RAG · Agentic AI — Learn by Building
+<p align="center">
+  <img src="assets/banner.svg" alt="LLM · RAG · Agentic AI — Learn by Building" width="100%"/>
+</p>
 
-A complete, hands-on path from **"what is a token?"** to **production RAG systems and multi-agent workflows**, written for **software developers and data engineers**.
+<p align="center">
+  <a href="https://github.com/alam0604/llm-rag-agentic-ai-learning/actions/workflows/tests.yml"><img src="https://github.com/alam0604/llm-rag-agentic-ai-learning/actions/workflows/tests.yml/badge.svg" alt="tests"/></a>
+  <img src="https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white" alt="python"/>
+  <img src="https://img.shields.io/badge/LangGraph-agents-1C3C3C?logo=langchain&logoColor=white" alt="langgraph"/>
+  <img src="https://img.shields.io/badge/FastAPI-service-009688?logo=fastapi&logoColor=white" alt="fastapi"/>
+  <img src="https://img.shields.io/badge/MCP-server-8A2BE2" alt="mcp"/>
+  <img src="https://img.shields.io/badge/Databricks-Mosaic%20AI-FF3621?logo=databricks&logoColor=white" alt="databricks"/>
+  <img src="https://img.shields.io/badge/Azure-AI%20Foundry%20%7C%20AI%20Search-0078D4?logo=microsoftazure&logoColor=white" alt="azure"/>
+  <img src="https://img.shields.io/badge/updates-weekly-2ea44f" alt="updated weekly"/>
+</p>
 
-- 📘 **10 in-depth lessons** with diagrams, worked examples, quizzes and exercises
-- 🧪 **A from-scratch Python library** (`src/ailearn`) — attention, BPE tokenizer, embeddings, vector indexes (Flat + IVF), chunkers, BM25, hybrid search, RAG pipeline, ReAct agent, eval metrics, plus a **LangGraph agent served with FastAPI (with streaming)**, an **MCP server**, **LLM-call resilience** (retries, rate limits, fallbacks), **structured output** and an **LLM-as-judge eval gate** — **112 pytest tests, runs offline, no API key**
-- 🛠️ **12 projects** (basic → advanced) for devs and data engineers (Azure / Databricks / Spark)
-- 📝 **34 quiz questions + system-design prompts**
-- 📚 **Curated links** — articles, courses, videos, papers, example-project repos
+<p align="center">
+  <b>A hands-on path from "what is a token?" to shipping RAG systems and multi-agent workflows,</b><br/>
+  built for <b>software developers</b> and <b>data engineers</b>. Every concept comes with a diagram, runnable code and a test.
+</p>
+
+<p align="center">
+  <a href="#-pick-your-path">Pick your path</a> ·
+  <a href="#-curriculum">Curriculum</a> ·
+  <a href="#-quick-start">Quick start</a> ·
+  <a href="projects/README.md">Projects</a> ·
+  <a href="quizzes/README.md">Quizzes</a> ·
+  <a href="resources/README.md">Resources</a> ·
+  <a href="CHANGELOG.md">What's new</a>
+</p>
+
+---
+
+<table align="center">
+  <tr>
+    <td align="center"><h3>📘 10</h3>core lessons</td>
+    <td align="center"><h3>🔬 7</h3>deep dives</td>
+    <td align="center"><h3>🧪 112</h3>offline tests</td>
+    <td align="center"><h3>🛠️ 12</h3>projects</td>
+    <td align="center"><h3>📝 34+</h3>quiz questions</td>
+    <td align="center"><h3>🌱 1</h3>new topic every week</td>
+  </tr>
+</table>
+
+## 🧭 Pick your path
+
+| If you are… | Start here | Then |
+|---|---|---|
+| 🐣 **New to LLMs** | [01 Foundations](docs/01-foundations.md) → [02 Working with LLMs](docs/02-working-with-llms.md) | [03 Vector DBs](docs/03-embeddings-and-vector-databases.md) → [04 RAG](docs/04-rag.md) |
+| 🧱 **A data engineer** (Azure · Databricks · Fabric) | [08 For Data Engineers](docs/08-for-data-engineers.md) | [10 LangGraph → Databricks](docs/10-hands-on-langgraph-databricks.md) → [Azure deep dive](docs/deep-dives/04-azure-ai-foundry-and-ai-search.md) |
+| 👩‍💻 **A software developer** | [07 For Developers](docs/07-for-software-developers.md) | [05 Agentic AI](docs/05-agentic-ai.md) → [Shipping apps](docs/deep-dives/03-shipping-apps.md) |
+| 🚀 **Ready to ship an agent** | [LangGraph in depth](docs/deep-dives/01-langgraph-in-depth.md) | [Evals & observability](docs/deep-dives/05-evaluation-and-observability.md) → [MCP](docs/deep-dives/06-mcp-hands-on.md) |
+| 🎯 **Preparing for interviews** | [Quizzes & system design](quizzes/README.md) | [Projects](projects/README.md) → [Real-world guide](docs/09-real-world-getting-started.md) |
+
+Want a schedule? Follow the **[12-week roadmap](ROADMAP.md)** (~6–8 h/week).
+
+## 🗺️ The journey
 
 ```mermaid
 flowchart LR
-    A["01 Foundations<br/>tokens · embeddings<br/>attention · transformers"] --> B["02 Working with LLMs<br/>APIs · prompting<br/>structured output · cost"]
-    B --> C["03 Embeddings &<br/>Vector DBs<br/>HNSW · IVF · PQ · hybrid"]
-    C --> D["04 RAG<br/>chunking · retrieval<br/>rerank · evaluation"]
-    D --> E["05 Agentic AI<br/>ReAct · tools · memory<br/>multi-agent · MCP"]
-    E --> F["06 Advanced<br/>GraphRAG · fine-tuning<br/>serving · LLMOps · security"]
-    F --> G["07/08 Apply it<br/>software dev &<br/>data engineering"]
-    G --> H["09 Real world<br/>+ 12 projects"]
-    H --> I["10 Hands-on<br/>LangGraph · FastAPI<br/>Databricks Mosaic AI"]
+    A["🧠 01 Foundations<br/>tokens · embeddings<br/>attention"] --> B["💬 02 LLMs<br/>APIs · prompting<br/>structured output"]
+    B --> C["🧭 03 Vector DBs<br/>HNSW · IVF · PQ<br/>hybrid search"]
+    C --> D["📚 04 RAG<br/>chunking · rerank<br/>evaluation"]
+    D --> E["🤖 05 Agents<br/>ReAct · tools<br/>memory · MCP"]
+    E --> F["⚡ 06 Advanced<br/>GraphRAG · LoRA<br/>LLMOps · security"]
+    F --> G["🧱 07/08 Apply it<br/>devs & data<br/>engineers"]
+    G --> H["🚀 10 Ship it<br/>LangGraph · FastAPI<br/>Databricks"]
+    H --> I["🔬 Deep dives<br/>+ weekly new<br/>topics"]
+    style A fill:#0c4a6e,color:#fff,stroke:#7dd3fc
+    style D fill:#3b0764,color:#fff,stroke:#a78bfa
+    style E fill:#4a044e,color:#fff,stroke:#f0abfc
+    style H fill:#14532d,color:#fff,stroke:#86efac
 ```
-
-## 🌱 This repo keeps evolving
-
-Every week a scheduled update adds a **new topic** (lesson or deep dive with diagrams, code, tests, quiz and links), **re-checks an older lesson** for outdated APIs and dead links, and on the first update of each month writes a **[What's new digest](docs/whats-new/README.md)**.
-
-- **Steer it:** add topics under *🔥 Requested* in **[BACKLOG.md](BACKLOG.md)** (edit on GitHub), or reorder the plan.
-- **See what changed:** **[CHANGELOG.md](CHANGELOG.md)** · the quality rules every update follows: **[EVOLUTION.md](EVOLUTION.md)**
-- Nothing is pushed unless all tests and diagram checks pass; any week can be undone with `git revert`.
 
 ## 📖 Curriculum
 
-| # | Module | Level | What you'll learn |
-|---|---|---|---|
-| 01 | [Foundations](docs/01-foundations.md) | 🟢 | AI→ML→DL→LLM, tokens & BPE, embeddings, self-attention (with code), transformer, training (pre-train → SFT → RLHF/DPO), decoding, hallucinations |
-| 02 | [Working with LLMs](docs/02-working-with-llms.md) | 🟢 | model landscape, API calls (OpenAI, Claude, Ollama), prompt techniques, structured JSON output, cost & latency maths |
-| 03 | [Embeddings & Vector Databases](docs/03-embeddings-and-vector-databases.md) | 🟢→🔴 | similarity metrics, ANN indexes (Flat/IVF/HNSW/PQ/DiskANN) with pictures, DB comparison, pgvector/Chroma/Databricks examples, filtering, hybrid search |
-| 04 | [RAG](docs/04-rag.md) | 🟡 | architecture, parsing, chunking strategies, hybrid + reranking, query transformation, failure debugging, evaluation, RAG vs fine-tuning |
-| 05 | [Agentic AI](docs/05-agentic-ai.md) | 🟡→🔴 | workflows vs agents, ReAct, tool calling, memory, planning, multi-agent, MCP, frameworks, safety & testing |
-| 06 | [Advanced Topics](docs/06-advanced-topics.md) | 🔴 | parent-child, contextual retrieval, GraphRAG, Self/Corrective RAG, LoRA/QLoRA/DPO, KV cache, quantization, LLMOps, OWASP LLM Top 10, reference architecture |
-| 07 | [For Software Developers](docs/07-for-software-developers.md) | 🟡 | codebase RAG, test generation, PR review, incident triage, AI product features |
-| 08 | [For Data Engineers](docs/08-for-data-engineers.md) | 🟡 | RAG ingestion as medallion (PySpark), `ai_query`, text-to-SQL agents, pipeline triage, catalog enrichment, embeddings at scale |
-| 09 | [Getting Started in Real Life](docs/09-real-world-getting-started.md) | 🟢 | 7-day plan, setup, production checklist, portfolio, staying current |
-| 10 | [Hands-on: LangGraph → FastAPI → Databricks Mosaic AI](docs/10-hands-on-langgraph-databricks.md) | 🟡→🔴 | stateful graph agent (routing, SQL self-correction, RAG, human approval), offline agent tests, REST service, Vector Search + UC function tools, MLflow tracing/eval, deployment |
-| 🔬 | [**Deep dives**](docs/deep-dives/README.md) — LangGraph in depth · real models & resilience · shipping apps (FastAPI, SSE, Streamlit, Docker) · Azure AI Foundry & AI Search · evaluation & observability (RAGAS, DeepEval, Langfuse) · MCP hands-on · math & Python prerequisites | 🟡→🔴 | the skills that turn learning into shipping, each with runnable code + tests |
-| — | [Projects](projects/README.md) · [Quizzes](quizzes/README.md) · [Resources](resources/README.md) | | |
+| # | Lesson | Level | What you'll learn |
+|:-:|---|:-:|---|
+| 01 | [**Foundations**](docs/01-foundations.md) | 🟢 | tokens & BPE, embeddings, self-attention (coded in NumPy), transformers, training (SFT → RLHF/DPO), decoding, hallucinations |
+| 02 | [**Working with LLMs**](docs/02-working-with-llms.md) | 🟢 | model landscape, API calls (OpenAI, Claude, Ollama), prompting techniques, JSON output, cost & latency maths |
+| 03 | [**Embeddings & Vector DBs**](docs/03-embeddings-and-vector-databases.md) | 🟢→🔴 | similarity metrics, Flat/IVF/HNSW/PQ with pictures, DB comparison, pgvector · Chroma · Databricks, filtering, hybrid |
+| 04 | [**RAG**](docs/04-rag.md) | 🟡 | architecture, parsing, chunking, hybrid + reranking, query rewriting, debugging failures, evaluation |
+| 05 | [**Agentic AI**](docs/05-agentic-ai.md) | 🟡→🔴 | workflows vs agents, ReAct, tool calling, memory, planning, multi-agent, MCP, frameworks, safety |
+| 06 | [**Advanced Topics**](docs/06-advanced-topics.md) | 🔴 | contextual retrieval, GraphRAG, Self/Corrective RAG, LoRA/QLoRA/DPO, KV cache, quantization, LLMOps, OWASP LLM Top 10 |
+| 07 | [**For Software Developers**](docs/07-for-software-developers.md) | 🟡 | codebase RAG, test generation, PR review bots, incident triage, AI product features |
+| 08 | [**For Data Engineers**](docs/08-for-data-engineers.md) | 🟡 | RAG ingestion as a medallion pipeline (PySpark), `ai_query`, text-to-SQL agents, pipeline triage, embeddings at scale |
+| 09 | [**Getting Started in Real Life**](docs/09-real-world-getting-started.md) | 🟢 | 7-day plan, setup, production checklist, portfolio, staying current |
+| 10 | [**Hands-on: LangGraph → FastAPI → Databricks**](docs/10-hands-on-langgraph-databricks.md) | 🟡→🔴 | graph agent with routing, SQL self-correction and human approval; REST service; Vector Search + UC tools; MLflow eval |
 
-👉 Suggested pacing: [ROADMAP.md](ROADMAP.md) (12 weeks, ~6–8 h/week).
+### 🔬 Deep dives — the skills that turn learning into shipping
+
+| | Deep dive | Highlights |
+|:-:|---|---|
+| 1 | [**LangGraph in depth**](docs/deep-dives/01-langgraph-in-depth.md) | state & reducers, `Send` map-reduce, `interrupt()`, streaming, checkpoints, subgraphs |
+| 2 | [**Real models & resilience**](docs/deep-dives/02-real-models-and-embeddings.md) | Azure OpenAI, Ollama, retries with jitter, rate limits, fallbacks, messy PDFs |
+| 3 | [**Shipping apps**](docs/deep-dives/03-shipping-apps.md) | async Python, FastAPI, streaming (SSE), Streamlit, Docker, deployment |
+| 4 | [**Azure AI Foundry & AI Search**](docs/deep-dives/04-azure-ai-foundry-and-ai-search.md) | hybrid + semantic ranking, security trimming, Foundry agents (SDK 2.x) |
+| 5 | [**Evaluation & observability**](docs/deep-dives/05-evaluation-and-observability.md) | LLM-as-judge, RAGAS, DeepEval, Langfuse, eval gates in CI |
+| 6 | [**MCP hands-on**](docs/deep-dives/06-mcp-hands-on.md) | build, test and secure an MCP server (SDK 2.x) |
+| 7 | [**Math & Python prerequisites**](docs/deep-dives/07-prerequisites-math-and-python.md) | vectors, cosine, softmax, sizing maths, Pydantic, async, pytest |
+
+## 🧪 Learn from code that actually runs
+
+Everything in [`src/ailearn/`](src/ailearn) is written from scratch to be **read**, and it all runs **offline with no API key**. Fake LLMs (`ScriptedLLM`, `MockLLM`) stand in for the real ones in tests, and you can swap in OpenAI, Azure OpenAI, Claude or Ollama with one line.
+
+<table>
+<tr><th>🔤 Foundations</th><th>🔎 Retrieval & RAG</th><th>🤖 Agents & serving</th><th>🛡️ Production</th></tr>
+<tr valign="top">
+<td>
+
+`attention.py` — attention, causal mask, sampling<br/>
+`tokenizer.py` — BPE tokenizer<br/>
+`embeddings.py` — TF-IDF, hashing, cosine
+
+</td>
+<td>
+
+`vectorstore.py` — Flat + IVF indexes<br/>
+`chunking.py` — 4 chunkers<br/>
+`bm25.py` · `hybrid.py` — BM25 + RRF<br/>
+`rag.py` — full RAG pipeline
+
+</td>
+<td>
+
+`agent.py` — ReAct + safe tools<br/>
+`graph_agent.py` — LangGraph agent<br/>
+`api.py` — FastAPI + SSE + approvals<br/>
+`mcp_server.py` — MCP server
+
+</td>
+<td>
+
+`resilience.py` — retry, rate limit, fallback<br/>
+`structured.py` — Pydantic outputs<br/>
+`evaluation.py` — retrieval metrics<br/>
+`llm_judge.py` — LLM judge + CI gate
+
+</td>
+</tr>
+</table>
 
 ## 🚀 Quick start
 
 ```bash
-git clone <this-repo> && cd llm-rag-agentic-ai-learning
-python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
+git clone https://github.com/alam0604/llm-rag-agentic-ai-learning && cd llm-rag-agentic-ai-learning
+python -m venv .venv && source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -e ".[dev,graph]"
+pytest -q                                                 # ✅ every concept has a test
+```
 
-pytest -v                                   # 112 tests — every concept has a test
+<details>
+<summary><b>▶️ More things to run</b></summary>
+
+```bash
 python examples/01_offline_rag_demo.py      # RAG end-to-end, offline
 python examples/02_text_to_sql_agent.py     # ReAct agent writing SQL, offline
-python examples/generate_images.py          # regenerate the pictures in assets/images
-uvicorn ailearn.api:app --app-dir src       # LangGraph agent as a REST API → http://127.0.0.1:8000/docs
-streamlit run apps/streamlit_app.py         # chat UI with live steps + approve/reject (pip install -e ".[ui]")
+uvicorn ailearn.api:app --app-dir src       # agent as a REST API → http://127.0.0.1:8000/docs
+streamlit run apps/streamlit_app.py         # chat UI with live steps + approve/reject  (pip install -e ".[ui]")
 docker compose up --build                   # API + UI in containers
-python -m ailearn.mcp_server                # MCP server (stdio) for Claude/IDE/agent clients
+python -m ailearn.mcp_server                # MCP server for Claude / IDE / agent clients
+python examples/generate_images.py          # regenerate the figures in assets/images
 ```
 
-With a real model (optional): `pip install -e ".[real]"`, set `OPENAI_API_KEY` (or run [Ollama](https://ollama.com/) locally for free) and try `examples/03_real_rag_chroma_openai.py` and `examples/04_tool_calling_native.py`.
+**With a real model:** `pip install -e ".[real]"`, set `OPENAI_API_KEY` (or run [Ollama](https://ollama.com/) locally for free), then try `examples/03_real_rag_chroma_openai.py` and `examples/04_tool_calling_native.py`.
+</details>
 
-## 🗂️ Repository layout
+## 🖼️ A peek inside
+
+| Attention: "it" looks back at "pipeline" | Similar meaning → nearby vectors | HNSW: search from coarse to fine |
+|:-:|:-:|:-:|
+| <img src="assets/images/attention_heatmap.png" width="280"/> | <img src="assets/images/embedding_space.png" width="280"/> | <img src="assets/images/hnsw_layers.png" width="280"/> |
+
+## 🌱 This repo grows every week
+
+```mermaid
+flowchart LR
+    B["📋 BACKLOG.md<br/>you add topics"] --> W["🤖 Sunday update<br/>research · write · code · test"]
+    W --> V{"✅ all tests &<br/>diagram checks pass?"}
+    V -->|yes| P["📦 pushed +<br/>CHANGELOG entry"]
+    V -->|no| S["⏭️ skipped,<br/>never pushed red"]
+    P --> B
+```
+
+- **Every Sunday** a scheduled update adds a **new topic**, re-checks an **older lesson** for outdated APIs and dead links, and on the first run of each month writes a **[What's new digest](docs/whats-new/README.md)**.
+- **Steer it:** add a line under *🔥 Requested* in **[BACKLOG.md](BACKLOG.md)** and it's built next.
+- **Follow along:** **[CHANGELOG.md](CHANGELOG.md)** · quality rules: **[EVOLUTION.md](EVOLUTION.md)**
+
+<details>
+<summary><b>🗂️ Repository layout</b></summary>
 
 ```
-├── docs/                 # 10 lessons (theory + diagrams + examples + quizzes + links)
-│   └── deep-dives/       # 7 in-depth guides: LangGraph, real models, shipping, Azure, evals, MCP, prereqs
+├── docs/                 # 10 lessons
+│   ├── deep-dives/       # 7 in-depth guides
+│   └── whats-new/        # monthly digests
+├── src/ailearn/          # from-scratch library (read these!)
+├── tests/                # pytest suite, all offline
+├── examples/             # runnable demos + databricks/ notebooks
 ├── apps/                 # Streamlit chat UI
-├── Dockerfile, docker-compose.yml
-├── src/ailearn/          # from-scratch implementations (read these!)
-│   ├── attention.py      # scaled dot-product, multi-head, causal mask, sampling
-│   ├── tokenizer.py      # Byte-Pair Encoding
-│   ├── embeddings.py     # TF-IDF & hashing embedders, cosine/dot/L2
-│   ├── vectorstore.py    # FlatIndex (exact) + IVFIndex (approximate, k-means)
-│   ├── chunking.py       # fixed, sentence, recursive, markdown-section
-│   ├── bm25.py           # keyword retrieval
-│   ├── hybrid.py         # Reciprocal Rank Fusion, weighted fusion
-│   ├── rag.py            # RAG pipeline (dense/hybrid, filters, threshold, citations)
-│   ├── agent.py          # ReAct agent, safe calculator, read-only SQL tool
-│   ├── evaluation.py     # precision/recall@k, MRR, nDCG, F1, groundedness
-│   ├── llm.py            # LLM interface, MockLLM, ScriptedLLM, OpenAI/Anthropic adapters
-│   ├── graph_agent.py    # LangGraph agent: router, SQL retry loop, RAG, human approval
-│   ├── api.py            # FastAPI service: /ask, /ask/stream (SSE), /approve
-│   ├── mcp_server.py     # MCP server: warehouse tools, schema resource, prompt
-│   ├── resilience.py     # retries+jitter, token-bucket rate limits, timeout, circuit breaker, fallback, cache
-│   ├── structured.py     # Pydantic structured output with repair-retry
-│   └── llm_judge.py      # LLM-as-judge rubrics + eval runner + CI regression gate
-├── tests/                # pytest suite (the "proper test cases")
-├── examples/             # runnable demos (offline + real-API) + databricks/ notebooks
-├── assets/images/        # generated figures (attention, embeddings, HNSW, IVF…)
 ├── projects/             # 12 project specs with acceptance criteria
-├── quizzes/              # graded questions + system-design prompts
-├── resources/            # curated articles, courses, videos, repos, papers
-├── tools/                # Mermaid + link checkers used before every push
+├── quizzes/              # quiz questions + system-design prompts
+├── resources/            # curated articles, courses, videos, papers
+├── assets/               # banner + generated figures
+├── tools/                # Mermaid + link checkers
+├── Dockerfile, docker-compose.yml
 ├── BACKLOG.md            # 👉 topic queue for weekly updates (you edit this)
 ├── EVOLUTION.md          # rules for how the repo grows
+├── ROADMAP.md            # 12-week study plan
 └── CHANGELOG.md          # what changed, week by week
 ```
+</details>
 
-## 🖼️ A peek at the pictures
+<details>
+<summary><b>🧠 How to study each lesson</b></summary>
 
-| Attention | Embedding space | HNSW |
-|---|---|---|
-| ![](assets/images/attention_heatmap.png) | ![](assets/images/embedding_space.png) | ![](assets/images/hnsw_layers.png) |
-
-## 🧭 How to study each module
-1. Read the lesson; draw the diagrams yourself.
+1. Read the lesson and redraw the diagrams yourself.
 2. Read the matching file in `src/ailearn/` and its tests.
-3. Break something on purpose and watch a test fail — then fix it.
-4. Answer the "Check your understanding" questions without peeking.
-5. Do at least one exercise, then one project.
-6. Watch/read 1–2 links from "Go deeper".
+3. Break something on purpose, watch a test fail, then fix it.
+4. Answer "Check your understanding" without peeking.
+5. Do one exercise, then one project.
+6. Read or watch 1–2 links from "Go deeper".
+</details>
 
 ---
-*Personal learning repository. Implementations are educational — for production use the libraries and services referenced in each lesson.*
+
+<p align="center">
+  <sub>Personal learning repository · implementations are educational; for production, use the libraries and services each lesson points to.</sub><br/>
+  <sub>Built and grown with ❤️ by <a href="https://github.com/alam0604">@alam0604</a></sub>
+</p>

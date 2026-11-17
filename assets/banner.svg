@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="LLM · RAG · Agentic AI — Learn by Building">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="0.55" stop-color="#151a3a"/>
+      <stop offset="1" stop-color="#0e2a3a"/>
+    </linearGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7dd3fc"/>
+      <stop offset="0.5" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#f0abfc"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+    <style>
+      .edge { stroke: #7dd3fc; stroke-opacity: .28; stroke-width: 1.4; fill: none; }
+      .flow { stroke: #f0abfc; stroke-width: 2.2; fill: none; stroke-dasharray: 6 14; animation: flow 2.4s linear infinite; }
+      .node { fill: #0b1020; stroke: #a78bfa; stroke-width: 2; }
+      .pulse { fill: #7dd3fc; animation: pulse 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .p2 { animation-delay: .6s } .p3 { animation-delay: 1.2s } .p4 { animation-delay: 1.8s }
+      .chip { fill: #ffffff; fill-opacity: .07; stroke: #ffffff; stroke-opacity: .18; }
+      .chiptxt { font: 600 15px 'Segoe UI', Helvetica, Arial, sans-serif; fill: #cbd5e1; }
+      .ttl { font: 800 58px 'Segoe UI', Helvetica, Arial, sans-serif; fill: url(#title); letter-spacing: -1px; }
+      .sub { font: 400 21px 'Segoe UI', Helvetica, Arial, sans-serif; fill: #cbd5e1; }
+      .lbl { font: 700 12px 'Segoe UI', Helvetica, Arial, sans-serif; fill: #e2e8f0; text-anchor: middle; }
+      @keyframes flow { to { stroke-dashoffset: -40; } }
+      @keyframes pulse { 0%,100% { opacity: .35; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.15); } }
+    </style>
+  </defs>
+
+  <rect width="1200" height="360" rx="22" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="22" fill="url(#grid)"/>
+  <circle cx="960" cy="180" r="210" fill="url(#glow)"/>
+
+  <!-- text -->
+  <text x="60" y="120" class="ttl">LLM · RAG · Agentic AI</text>
+  <text x="62" y="165" class="sub">Learn by building — from "what is a token?" to production agents</text>
+
+  <g transform="translate(60,205)">
+    <rect class="chip" x="0" width="100" height="34" rx="17"/><circle cx="18" cy="17" r="5" fill="#7dd3fc"/><text class="chiptxt" x="30" y="22">Lessons</text>
+    <rect class="chip" x="112" width="135" height="34" rx="17"/><circle cx="130" cy="17" r="5" fill="#a78bfa"/><text class="chiptxt" x="142" y="22">Tested code</text>
+    <rect class="chip" x="259" width="109" height="34" rx="17"/><circle cx="277" cy="17" r="5" fill="#f0abfc"/><text class="chiptxt" x="289" y="22">Projects</text>
+    <rect class="chip" x="380" width="143" height="34" rx="17"/><circle cx="398" cy="17" r="5" fill="#86efac"/><text class="chiptxt" x="410" y="22">Grows weekly</text>
+  </g>
+  <text x="62" y="300" class="sub" style="font-size:17px;fill:#94a3b8">for software developers &amp; data engineers · Azure · Databricks · Fabric</text>
+
+  <!-- agent graph: question → retrieve → LLM → tools → answer -->
+  <g transform="translate(750,40)">
+    <path class="edge" d="M60 140 C 120 60, 180 60, 230 90"/>
+    <path class="edge" d="M60 140 C 120 220, 180 220, 230 200"/>
+    <path class="edge" d="M230 90 L 330 145"/>
+    <path class="edge" d="M230 200 L 330 145"/>
+    <path class="edge" d="M330 145 L 420 70"/>
+    <path class="edge" d="M330 145 L 420 220"/>
+    <path class="edge" d="M420 70 C 450 120, 450 170, 420 220"/>
+
+    <path class="flow" d="M60 140 C 120 60, 180 60, 230 90 L 330 145 L 420 70"/>
+    <path class="flow" d="M60 140 C 120 220, 180 220, 230 200 L 330 145 L 420 220" style="animation-delay:1.2s"/>
+
+    <circle class="node" cx="60" cy="140" r="26"/><circle class="pulse" cx="60" cy="140" r="7"/>
+    <circle class="node" cx="230" cy="90" r="24"/><circle class="pulse p2" cx="230" cy="90" r="6"/>
+    <circle class="node" cx="230" cy="200" r="24"/><circle class="pulse p3" cx="230" cy="200" r="6"/>
+    <circle class="node" cx="330" cy="145" r="30" style="stroke:#f0abfc"/><circle class="pulse p4" cx="330" cy="145" r="9" style="fill:#f0abfc"/>
+    <circle class="node" cx="420" cy="70" r="22"/><circle class="pulse" cx="420" cy="70" r="6"/>
+    <circle class="node" cx="420" cy="220" r="22"/><circle class="pulse p2" cx="420" cy="220" r="6"/>
+
+    <text class="lbl" x="60" y="186">question</text>
+    <text class="lbl" x="230" y="52">vector search</text>
+    <text class="lbl" x="230" y="246">BM25</text>
+    <text class="lbl" x="330" y="196">LLM</text>
+    <text class="lbl" x="420" y="34">tools</text>
+    <text class="lbl" x="420" y="266">answer</text>
+  </g>
+</svg>

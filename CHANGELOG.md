@@ -2,6 +2,9 @@
 
 Newest first. Weekly automated updates follow [EVOLUTION.md](EVOLUTION.md).
 
+## 2026-11-18 — README redesign
+- New animated banner (`assets/banner.svg`), badges, stats strip, "Pick your path" table, code-module overview, collapsible sections.
+
 ## 2026-11-18 — Repo becomes self-evolving
 - Added [BACKLOG.md](BACKLOG.md) (topic queue you control), [EVOLUTION.md](EVOLUTION.md) (quality contract), this changelog, `docs/whats-new/` for monthly digests, and `tools/` (Mermaid + link checkers).
 - Weekly scheduled update starts. Freshness rotation starts at `docs/01-foundations.md`.
