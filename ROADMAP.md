@@ -26,6 +26,6 @@ gantt
 | 5–6 | [04 RAG](docs/04-rag.md) | **P3** chat-with-docs with eval table | quiz Q14, Q18–19, Q24 |
 | 7–8 | [05 Agentic AI](docs/05-agentic-ai.md) | **P4** text-to-SQL agent with execution-accuracy eval | quiz Q20–23, Q30 |
 | 9–10 | [07](docs/07-for-software-developers.md) / [08](docs/08-for-data-engineers.md) | **P5** RAG medallion pipeline, **P7** triage bot or **P9** enrichment | system-design prompt 1–2 |
-| 11–12 | [06 Advanced](docs/06-advanced-topics.md) | **P12** production RAG with CI evals + tracing (or P10/P11) | quiz Q25–34, design prompts 3–5 |
+| 11–12 | [10 Hands-on LangGraph + Databricks](docs/10-hands-on-langgraph-databricks.md), [06 Advanced](docs/06-advanced-topics.md) | **P12** production RAG with CI evals + tracing (or P10/P11) | quiz Q25–34, design prompts 3–5 |
 
 **Rules that make this work:** build every week · measure everything (eval tables) · write a short README per project · revisit quizzes after 2 weeks (spaced repetition).

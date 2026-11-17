@@ -2,8 +2,8 @@
 
 A complete, hands-on path from **"what is a token?"** to **production RAG systems and multi-agent workflows**, written for **software developers and data engineers**.
 
-- 📘 **9 in-depth lessons** with diagrams, worked examples, quizzes and exercises
-- 🧪 **A from-scratch Python library** (`src/ailearn`) — attention, BPE tokenizer, embeddings, vector indexes (Flat + IVF), chunkers, BM25, hybrid search, RAG pipeline, ReAct agent, eval metrics — **55 pytest tests, runs offline, no API key**
+- 📘 **10 in-depth lessons** with diagrams, worked examples, quizzes and exercises
+- 🧪 **A from-scratch Python library** (`src/ailearn`) — attention, BPE tokenizer, embeddings, vector indexes (Flat + IVF), chunkers, BM25, hybrid search, RAG pipeline, ReAct agent, eval metrics, plus a **LangGraph agent served with FastAPI** — **72 pytest tests, runs offline, no API key**
 - 🛠️ **12 projects** (basic → advanced) for devs and data engineers (Azure / Databricks / Spark)
 - 📝 **34 quiz questions + system-design prompts**
 - 📚 **Curated links** — articles, courses, videos, papers, example-project repos
@@ -17,6 +17,7 @@ flowchart LR
     E --> F["06 Advanced<br/>GraphRAG · fine-tuning<br/>serving · LLMOps · security"]
     F --> G["07/08 Apply it<br/>software dev &<br/>data engineering"]
     G --> H["09 Real world<br/>+ 12 projects"]
+    H --> I["10 Hands-on<br/>LangGraph · FastAPI<br/>Databricks Mosaic AI"]
 ```
 
 ## 📖 Curriculum
@@ -32,6 +33,7 @@ flowchart LR
 | 07 | [For Software Developers](docs/07-for-software-developers.md) | 🟡 | codebase RAG, test generation, PR review, incident triage, AI product features |
 | 08 | [For Data Engineers](docs/08-for-data-engineers.md) | 🟡 | RAG ingestion as medallion (PySpark), `ai_query`, text-to-SQL agents, pipeline triage, catalog enrichment, embeddings at scale |
 | 09 | [Getting Started in Real Life](docs/09-real-world-getting-started.md) | 🟢 | 7-day plan, setup, production checklist, portfolio, staying current |
+| 10 | [Hands-on: LangGraph → FastAPI → Databricks Mosaic AI](docs/10-hands-on-langgraph-databricks.md) | 🟡→🔴 | stateful graph agent (routing, SQL self-correction, RAG, human approval), offline agent tests, REST service, Vector Search + UC function tools, MLflow tracing/eval, deployment |
 | — | [Projects](projects/README.md) · [Quizzes](quizzes/README.md) · [Resources](resources/README.md) | | |
 
 👉 Suggested pacing: [ROADMAP.md](ROADMAP.md) (12 weeks, ~6–8 h/week).
@@ -41,12 +43,13 @@ flowchart LR
 ```bash
 git clone <this-repo> && cd llm-rag-agentic-ai-learning
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
-pip install -e ".[dev]"
+pip install -e ".[dev,graph]"
 
-pytest -v                                   # 55 tests — every concept has a test
+pytest -v                                   # 72 tests — every concept has a test
 python examples/01_offline_rag_demo.py      # RAG end-to-end, offline
 python examples/02_text_to_sql_agent.py     # ReAct agent writing SQL, offline
 python examples/generate_images.py          # regenerate the pictures in assets/images
+uvicorn ailearn.api:app --app-dir src       # LangGraph agent as a REST API → http://127.0.0.1:8000/docs
 ```
 
 With a real model (optional): `pip install -e ".[real]"`, set `OPENAI_API_KEY` (or run [Ollama](https://ollama.com/) locally for free) and try `examples/03_real_rag_chroma_openai.py` and `examples/04_tool_calling_native.py`.
@@ -54,7 +57,7 @@ With a real model (optional): `pip install -e ".[real]"`, set `OPENAI_API_KEY` (
 ## 🗂️ Repository layout
 
 ```
-├── docs/                 # 9 lessons (theory + diagrams + examples + quizzes + links)
+├── docs/                 # 10 lessons (theory + diagrams + examples + quizzes + links)
 ├── src/ailearn/          # from-scratch implementations (read these!)
 │   ├── attention.py      # scaled dot-product, multi-head, causal mask, sampling
 │   ├── tokenizer.py      # Byte-Pair Encoding
@@ -66,9 +69,11 @@ With a real model (optional): `pip install -e ".[real]"`, set `OPENAI_API_KEY` (
 │   ├── rag.py            # RAG pipeline (dense/hybrid, filters, threshold, citations)
 │   ├── agent.py          # ReAct agent, safe calculator, read-only SQL tool
 │   ├── evaluation.py     # precision/recall@k, MRR, nDCG, F1, groundedness
-│   └── llm.py            # LLM interface, MockLLM, ScriptedLLM, OpenAI/Anthropic adapters
+│   ├── llm.py            # LLM interface, MockLLM, ScriptedLLM, OpenAI/Anthropic adapters
+│   ├── graph_agent.py    # LangGraph agent: router, SQL retry loop, RAG, human approval
+│   └── api.py            # FastAPI service: /ask, /approve (human-in-the-loop)
 ├── tests/                # pytest suite (the "proper test cases")
-├── examples/             # runnable demos (offline + real-API)
+├── examples/             # runnable demos (offline + real-API) + databricks/ notebooks
 ├── assets/images/        # generated figures (attention, embeddings, HNSW, IVF…)
 ├── projects/             # 12 project specs with acceptance criteria
 ├── quizzes/              # graded questions + system-design prompts

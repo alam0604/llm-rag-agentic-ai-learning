@@ -3,7 +3,7 @@
 ## 1. Your first 7 days (practical)
 | Day | Do this | Output |
 |---|---|---|
-| 1 | Clone this repo, `pip install -e ".[dev]"`, `pytest -v`. Read `docs/01`. | all 55 tests green |
+| 1 | Clone this repo, `pip install -e ".[dev,graph]"`, `pytest -v`. Read `docs/01`. | all 72 tests green |
 | 2 | Get an API key (OpenAI / Anthropic / Azure OpenAI) **or** install [Ollama](https://ollama.com/). Make one API call from Python. | `hello_llm.py` |
 | 3 | Prompting: build a prompt that turns English into SQL for one of your schemas; test on 10 questions. | prompt + test results |
 | 4 | Embeddings: embed 20 sentences, find nearest neighbours, plot them. | notebook |
