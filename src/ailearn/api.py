@@ -6,17 +6,20 @@
 
 Endpoints
   POST /ask                       {"question": "...", "thread_id": "optional"}
+  POST /ask/stream                same body; Server-Sent Events, one event per graph node
   POST /approve/{thread_id}       {"approved": true|false}
   GET  /threads/{thread_id}       current state (debug)
   GET  /health
 """
 from __future__ import annotations
 
+import json
 import os
 import sqlite3
 import uuid
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from .graph_agent import build_graph
@@ -90,6 +93,27 @@ def create_app(llm: LLM | None = None, conn=None, rag=None, action_executor=None
         thread_id = req.thread_id or str(uuid.uuid4())
         graph.invoke({"question": req.question, "trace": []}, {"configurable": {"thread_id": thread_id}})
         return _respond(thread_id)
+
+    @app.post("/ask/stream")
+    def ask_stream(req: AskRequest):
+        """Server-Sent Events: one `node` event per graph step, then a final `result` event.
+
+        Clients: browser EventSource (GET only) / fetch reader, `httpx.stream`, Streamlit, Chainlit.
+        """
+        thread_id = req.thread_id or str(uuid.uuid4())
+        config = {"configurable": {"thread_id": thread_id}}
+
+        def events():
+            for update in graph.stream({"question": req.question, "trace": []}, config, stream_mode="updates"):
+                for node, delta in update.items():
+                    if node.startswith("__"):          # e.g. __interrupt__
+                        continue
+                    payload = {"node": node, "trace": (delta or {}).get("trace", [])[-1:]}
+                    yield f"event: node\ndata: {json.dumps(payload)}\n\n"
+            yield f"event: result\ndata: {_respond(thread_id).model_dump_json()}\n\n"
+
+        return StreamingResponse(events(), media_type="text/event-stream",
+                                 headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
     @app.post("/approve/{thread_id}", response_model=AgentResponse)
     def approve(thread_id: str, req: ApproveRequest):

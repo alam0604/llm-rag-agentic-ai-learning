@@ -1,0 +1,14 @@
+# docker compose up --build   →  API http://localhost:8000/docs · UI http://localhost:8501
+services:
+  api:
+    build: .
+    ports: ["8000:8000"]
+    env_file: [{path: .env, required: false}]   # USE_REAL_LLM=1, OPENAI_API_KEY=..., MODEL=...
+  ui:
+    image: python:3.12-slim
+    working_dir: /app
+    volumes: ["./apps:/app"]
+    command: sh -c "pip install -q streamlit httpx && streamlit run streamlit_app.py --server.address 0.0.0.0"
+    environment: [API_URL=http://api:8000]
+    ports: ["8501:8501"]
+    depends_on: [api]

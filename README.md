@@ -3,7 +3,7 @@
 A complete, hands-on path from **"what is a token?"** to **production RAG systems and multi-agent workflows**, written for **software developers and data engineers**.
 
 - 📘 **10 in-depth lessons** with diagrams, worked examples, quizzes and exercises
-- 🧪 **A from-scratch Python library** (`src/ailearn`) — attention, BPE tokenizer, embeddings, vector indexes (Flat + IVF), chunkers, BM25, hybrid search, RAG pipeline, ReAct agent, eval metrics, plus a **LangGraph agent served with FastAPI** — **72 pytest tests, runs offline, no API key**
+- 🧪 **A from-scratch Python library** (`src/ailearn`) — attention, BPE tokenizer, embeddings, vector indexes (Flat + IVF), chunkers, BM25, hybrid search, RAG pipeline, ReAct agent, eval metrics, plus a **LangGraph agent served with FastAPI (with streaming)**, an **MCP server**, **LLM-call resilience** (retries, rate limits, fallbacks), **structured output** and an **LLM-as-judge eval gate** — **112 pytest tests, runs offline, no API key**
 - 🛠️ **12 projects** (basic → advanced) for devs and data engineers (Azure / Databricks / Spark)
 - 📝 **34 quiz questions + system-design prompts**
 - 📚 **Curated links** — articles, courses, videos, papers, example-project repos
@@ -34,6 +34,7 @@ flowchart LR
 | 08 | [For Data Engineers](docs/08-for-data-engineers.md) | 🟡 | RAG ingestion as medallion (PySpark), `ai_query`, text-to-SQL agents, pipeline triage, catalog enrichment, embeddings at scale |
 | 09 | [Getting Started in Real Life](docs/09-real-world-getting-started.md) | 🟢 | 7-day plan, setup, production checklist, portfolio, staying current |
 | 10 | [Hands-on: LangGraph → FastAPI → Databricks Mosaic AI](docs/10-hands-on-langgraph-databricks.md) | 🟡→🔴 | stateful graph agent (routing, SQL self-correction, RAG, human approval), offline agent tests, REST service, Vector Search + UC function tools, MLflow tracing/eval, deployment |
+| 🔬 | [**Deep dives**](docs/deep-dives/README.md) — LangGraph in depth · real models & resilience · shipping apps (FastAPI, SSE, Streamlit, Docker) · Azure AI Foundry & AI Search · evaluation & observability (RAGAS, DeepEval, Langfuse) · MCP hands-on · math & Python prerequisites | 🟡→🔴 | the skills that turn learning into shipping, each with runnable code + tests |
 | — | [Projects](projects/README.md) · [Quizzes](quizzes/README.md) · [Resources](resources/README.md) | | |
 
 👉 Suggested pacing: [ROADMAP.md](ROADMAP.md) (12 weeks, ~6–8 h/week).
@@ -45,11 +46,14 @@ git clone <this-repo> && cd llm-rag-agentic-ai-learning
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -e ".[dev,graph]"
 
-pytest -v                                   # 72 tests — every concept has a test
+pytest -v                                   # 112 tests — every concept has a test
 python examples/01_offline_rag_demo.py      # RAG end-to-end, offline
 python examples/02_text_to_sql_agent.py     # ReAct agent writing SQL, offline
 python examples/generate_images.py          # regenerate the pictures in assets/images
 uvicorn ailearn.api:app --app-dir src       # LangGraph agent as a REST API → http://127.0.0.1:8000/docs
+streamlit run apps/streamlit_app.py         # chat UI with live steps + approve/reject (pip install -e ".[ui]")
+docker compose up --build                   # API + UI in containers
+python -m ailearn.mcp_server                # MCP server (stdio) for Claude/IDE/agent clients
 ```
 
 With a real model (optional): `pip install -e ".[real]"`, set `OPENAI_API_KEY` (or run [Ollama](https://ollama.com/) locally for free) and try `examples/03_real_rag_chroma_openai.py` and `examples/04_tool_calling_native.py`.
@@ -58,6 +62,9 @@ With a real model (optional): `pip install -e ".[real]"`, set `OPENAI_API_KEY` (
 
 ```
 ├── docs/                 # 10 lessons (theory + diagrams + examples + quizzes + links)
+│   └── deep-dives/       # 7 in-depth guides: LangGraph, real models, shipping, Azure, evals, MCP, prereqs
+├── apps/                 # Streamlit chat UI
+├── Dockerfile, docker-compose.yml
 ├── src/ailearn/          # from-scratch implementations (read these!)
 │   ├── attention.py      # scaled dot-product, multi-head, causal mask, sampling
 │   ├── tokenizer.py      # Byte-Pair Encoding
@@ -71,7 +78,11 @@ With a real model (optional): `pip install -e ".[real]"`, set `OPENAI_API_KEY` (
 │   ├── evaluation.py     # precision/recall@k, MRR, nDCG, F1, groundedness
 │   ├── llm.py            # LLM interface, MockLLM, ScriptedLLM, OpenAI/Anthropic adapters
 │   ├── graph_agent.py    # LangGraph agent: router, SQL retry loop, RAG, human approval
-│   └── api.py            # FastAPI service: /ask, /approve (human-in-the-loop)
+│   ├── api.py            # FastAPI service: /ask, /ask/stream (SSE), /approve
+│   ├── mcp_server.py     # MCP server: warehouse tools, schema resource, prompt
+│   ├── resilience.py     # retries+jitter, token-bucket rate limits, timeout, circuit breaker, fallback, cache
+│   ├── structured.py     # Pydantic structured output with repair-retry
+│   └── llm_judge.py      # LLM-as-judge rubrics + eval runner + CI regression gate
 ├── tests/                # pytest suite (the "proper test cases")
 ├── examples/             # runnable demos (offline + real-API) + databricks/ notebooks
 ├── assets/images/        # generated figures (attention, embeddings, HNSW, IVF…)

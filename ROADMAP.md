@@ -29,3 +29,6 @@ gantt
 | 11–12 | [10 Hands-on LangGraph + Databricks](docs/10-hands-on-langgraph-databricks.md), [06 Advanced](docs/06-advanced-topics.md) | **P12** production RAG with CI evals + tracing (or P10/P11) | quiz Q25–34, design prompts 3–5 |
 
 **Rules that make this work:** build every week · measure everything (eval tables) · write a short README per project · revisit quizzes after 2 weeks (spaced repetition).
+
+
+**Deep dives:** work through [docs/deep-dives](docs/deep-dives/README.md) alongside weeks 5–12. Suggested pairing: weeks 5–6 → Deep Dives 7 & 2 · weeks 7–8 → 1 & 6 · weeks 9–10 → 3 & 5 · weeks 11–12 → 4.

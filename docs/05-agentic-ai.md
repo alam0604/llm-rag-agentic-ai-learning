@@ -201,9 +201,9 @@ flowchart LR
 Servers expose **tools** (functions), **resources** (readable data) and **prompts** (templates).
 
 ```python
-# pip install "mcp[cli]"   — a tiny MCP server exposing a tool
-from mcp.server.fastmcp import FastMCP
-mcp = FastMCP("pipeline-tools")
+# pip install "mcp[cli]"   — a tiny MCP server exposing a tool (Python SDK 2.x)
+from mcp.server.mcpserver import MCPServer      # SDK 1.x: from mcp.server.fastmcp import FastMCP
+mcp = MCPServer("pipeline-tools")
 
 @mcp.tool()
 def pipeline_status(name: str) -> str:
@@ -211,8 +211,9 @@ def pipeline_status(name: str) -> str:
     return {"pl_ingest_sales": "Failed: 2200 invalid credentials"}.get(name, "Unknown")
 
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run()        # stdio; mcp.run("streamable-http") for a network server
 ```
+A complete, tested server (warehouse + docs search) lives in [`src/ailearn/mcp_server.py`](../src/ailearn/mcp_server.py). See the [MCP deep dive](deep-dives/06-mcp-hands-on.md).
 
 ---
 
